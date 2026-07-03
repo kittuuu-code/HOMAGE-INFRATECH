@@ -1,0 +1,264 @@
+/* ==========================================================================
+   HOMAGE INFRATECH - ABOUT US PAGE STYLES
+   ========================================================================== */
+
+/* --- Brand Narrative --- */
+.brand-narrative {
+  background-color: var(--bg-white);
+}
+
+.narrative-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.narrative-text p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.narrative-text p:first-of-type {
+  font-size: 1.15rem;
+  color: var(--primary-dark);
+  font-weight: 500;
+}
+
+.quote-block {
+  border-left: 4px solid var(--accent-color);
+  padding-left: 20px;
+  margin: 30px 0;
+  font-style: italic;
+  color: var(--primary-color);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.narrative-visual {
+  position: relative;
+}
+
+.narrative-card {
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 2;
+}
+
+.narrative-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+}
+
+.narrative-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.narrative-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.narrative-card li svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--accent-color);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* --- Stats Counter Section --- */
+.stats-section {
+  background-color: var(--primary-dark);
+  color: var(--text-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.stat-card:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -15px;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background-color: var(--border-light);
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  line-height: 1;
+  margin-bottom: 10px;
+  font-feature-settings: "tnum";
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--text-white-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* --- Localities & Tags --- */
+.localities-section {
+  background-color: var(--bg-light);
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  max-width: 800px;
+  margin: 30px auto 0 auto;
+}
+
+.locality-chip {
+  background-color: var(--bg-white);
+  color: var(--primary-dark);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+  border-radius: var(--border-radius-xl);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.locality-chip::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+}
+
+.locality-chip:hover {
+  border-color: var(--primary-color);
+  background-color: rgba(13, 92, 58, 0.05);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Core Values Grid --- */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.value-card {
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius-lg);
+  padding: 40px 30px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-emerald-light);
+}
+
+.value-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: rgba(13, 92, 58, 0.08);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+}
+
+.value-icon-wrap svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+.value-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 12px;
+}
+
+.value-card p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 1024px) {
+  .narrative-grid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .narrative-grid {
+    grid-template-columns: 1fr;
+  }
+  .narrative-visual {
+    margin-top: 30px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  .stat-card:nth-child(2)::after {
+    display: none;
+  }
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .stat-card::after {
+    display: none !important;
+  }
+}
