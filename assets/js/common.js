@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Mobile Navbar Toggle
+ * Mobile Navbar Toggle and Dropdown / Submenu Handlers
  */
 function initNavbar() {
   const hamburger = document.querySelector('.hamburger');
@@ -29,16 +29,51 @@ function initNavbar() {
         document.body.style.overflow = 'hidden';
       } else {
         document.body.style.overflow = '';
+        // Close all mobile dropdowns when mobile menu closes
+        document.querySelectorAll('.nav-dropdown-wrap.active, .nav-submenu-wrap.active').forEach(wrap => {
+          wrap.classList.remove('active');
+        });
       }
     });
 
-    // Close menu when clicking a nav link
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
+    // Close menu when clicking a normal nav link (excluding dropdown triggers)
+    const normalLinks = document.querySelectorAll('.nav-menu a:not(.nav-link-dropdown):not(.nav-submenu-title)');
+    normalLinks.forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.style.overflow = '';
+        // Close all mobile dropdowns
+        document.querySelectorAll('.nav-dropdown-wrap.active, .nav-submenu-wrap.active').forEach(wrap => {
+          wrap.classList.remove('active');
+        });
+      });
+    });
+
+    // Mobile click/tap toggle for Dropdown menus and Submenus
+    const dropdownToggles = document.querySelectorAll('.nav-dropdown-wrap > .nav-link-dropdown, .nav-submenu-wrap > .nav-submenu-title');
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const parent = toggle.parentElement;
+          
+          // Close sibling menus
+          const siblings = parent.parentElement.children;
+          for (let sibling of siblings) {
+            if (sibling !== parent) {
+              sibling.classList.remove('active');
+              sibling.querySelectorAll('.nav-submenu-wrap.active').forEach(subWrap => {
+                subWrap.classList.remove('active');
+              });
+            }
+          }
+          
+          // Toggle current parent
+          parent.classList.toggle('active');
+        }
       });
     });
   }
