@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initProjectDropdowns();
   initProjectModals();
+  initProjectSearch();
 });
 
 /**
@@ -113,9 +114,60 @@ window.downloadBrochure = downloadBrochure;
  * Handle custom project URL sharing on WhatsApp
  */
 function shareProject(projectName) {
-  const shareText = `Check out this premium plotted development opportunity "${projectName.toUpperCase()}" in Sector 85, Faridabad by Homage Infratech (Est. 2005). Clear title deeds and secure NCR investment. Details: `;
+  const shareText = `Check out this premium plotted development opportunity "${projectName.toUpperCase()}" by Homage Infratech (Est. 2005). Clear title deeds and secure investment. Details: `;
   const shareUrl = encodeURIComponent(window.location.href);
   const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}${shareUrl}`;
   window.open(waUrl, '_blank');
 }
 window.shareProject = shareProject;
+
+/**
+ * Dynamic Project Search Filtering
+ */
+function initProjectSearch() {
+  const searchInput = document.getElementById('project-search-input');
+  if (!searchInput) return;
+
+  const projectCards = document.querySelectorAll('.projects-grid .project-card');
+  const gridContainer = document.querySelector('.projects-grid');
+
+  // Create a No Results message element
+  const noResultsMsg = document.createElement('div');
+  noResultsMsg.className = 'no-results-msg hidden';
+  noResultsMsg.innerHTML = `
+    <svg style="width: 48px; height: 48px; margin: 0 auto 15px auto; display: block; fill: var(--text-white-muted);" viewBox="0 0 24 24">
+      <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+    </svg>
+    <h4>No Projects Found</h4>
+    <p>We couldn't find any projects matching "<strong><span id="search-term-display"></span></strong>". Try searching for another location or type.</p>
+  `;
+  gridContainer.appendChild(noResultsMsg);
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    projectCards.forEach(card => {
+      // Extract details
+      const title = card.querySelector('h3') ? card.querySelector('h3').textContent.toLowerCase() : '';
+      const loc = card.querySelector('.project-card-loc') ? card.querySelector('.project-card-loc').textContent.toLowerCase() : '';
+      const desc = card.querySelector('.project-card-desc') ? card.querySelector('.project-card-desc').textContent.toLowerCase() : '';
+      const badge = card.querySelector('.project-type-badge') ? card.querySelector('.project-type-badge').textContent.toLowerCase() : '';
+
+      if (title.includes(query) || loc.includes(query) || desc.includes(query) || badge.includes(query)) {
+        card.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    if (visibleCount === 0) {
+      const termDisplay = document.getElementById('search-term-display');
+      if (termDisplay) termDisplay.textContent = searchInput.value;
+      noResultsMsg.classList.remove('hidden');
+    } else {
+      noResultsMsg.classList.add('hidden');
+    }
+  });
+}

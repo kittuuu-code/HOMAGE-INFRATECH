@@ -373,6 +373,35 @@
   100% { background-position: -200% 0; }
 }
 
+/* --- Search Bar Styles --- */
+.search-wrapper input:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.no-results-msg {
+  text-align: center;
+  padding: 50px 20px;
+  grid-column: 1 / -1;
+  color: var(--text-muted);
+}
+.no-results-msg svg {
+  margin: 0 auto 15px auto;
+  fill: var(--text-white-muted);
+  display: block;
+}
+.no-results-msg h4 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+.no-results-msg p {
+  font-size: 0.95rem;
+}
+.hidden {
+  display: none !important;
+}
+
 /* --- Responsive Media Queries --- */
 @media (max-width: 900px) {
   .projects-grid {

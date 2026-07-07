@@ -275,20 +275,20 @@ function initOnloadPopup() {
           </div>
           <div class="modal-body" style="padding: 10px 30px 35px 30px;">
             <form id="onload-popup-form" novalidate>
-              <div class="form-group" style="margin-bottom: 20px; position: relative;">
+              <div class="form-group" style="margin-bottom: 20px;">
                 <label class="form-label" style="font-size: 0.75rem; font-weight: 600; color: var(--primary-dark); display: block; margin-bottom: 5px; text-transform: uppercase;">Name *</label>
                 <input type="text" id="popup-name" class="form-control" placeholder="Enter your full name" style="padding: 11px 14px; font-size: 0.9rem;" required>
-                <span class="error-message" style="bottom: -18px; font-size: 0.7rem;"></span>
+                <span class="error-message" style="font-size: 0.7rem; margin-top: 4px;"></span>
               </div>
-              <div class="form-group" style="margin-bottom: 20px; position: relative;">
+              <div class="form-group" style="margin-bottom: 20px;">
                 <label class="form-label" style="font-size: 0.75rem; font-weight: 600; color: var(--primary-dark); display: block; margin-bottom: 5px; text-transform: uppercase;">Phone No. *</label>
                 <input type="tel" id="popup-phone" class="form-control" placeholder="10-digit mobile number" style="padding: 11px 14px; font-size: 0.9rem;" required>
-                <span class="error-message" style="bottom: -18px; font-size: 0.7rem;"></span>
+                <span class="error-message" style="font-size: 0.7rem; margin-top: 4px;"></span>
               </div>
-              <div class="form-group" style="margin-bottom: 20px; position: relative;">
+              <div class="form-group" style="margin-bottom: 20px;">
                 <label class="form-label" style="font-size: 0.75rem; font-weight: 600; color: var(--primary-dark); display: block; margin-bottom: 5px; text-transform: uppercase;">Email Address *</label>
                 <input type="email" id="popup-email" class="form-control" placeholder="name@domain.com" style="padding: 11px 14px; font-size: 0.9rem;" required>
-                <span class="error-message" style="bottom: -18px; font-size: 0.7rem;"></span>
+                <span class="error-message" style="font-size: 0.7rem; margin-top: 4px;"></span>
               </div>
               <div class="form-submit-wrap" style="margin-top: 25px;">
                 <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 0.95rem;">Send Inquiry</button>

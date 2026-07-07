@@ -17,15 +17,15 @@ let currentPhotoIndex = 0;
 function initGalleryFilter() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const items = document.querySelectorAll('.gallery-item');
-  
+
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       // Toggle active button
       filterButtons.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      
+
       const filterValue = btn.getAttribute('data-filter');
-      
+
       items.forEach(item => {
         const itemCategory = item.getAttribute('data-category');
         if (filterValue === 'all' || itemCategory === filterValue) {
@@ -34,7 +34,7 @@ function initGalleryFilter() {
           item.classList.add('hidden');
         }
       });
-      
+
       // Update data array for lightbox index tracking
       updateGalleryData();
     });
@@ -64,7 +64,7 @@ function updateGalleryData() {
  */
 function initLightbox() {
   updateGalleryData(); // Initial load
-  
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox ? lightbox.querySelector('.lightbox-img') : null;
   const lightboxTitle = lightbox ? lightbox.querySelector('.lightbox-title') : null;
@@ -72,7 +72,7 @@ function initLightbox() {
   const closeBtn = lightbox ? lightbox.querySelector('.lightbox-close') : null;
   const prevBtn = lightbox ? lightbox.querySelector('.lightbox-nav-prev') : null;
   const nextBtn = lightbox ? lightbox.querySelector('.lightbox-nav-next') : null;
-  
+
   if (!lightbox) return;
 
   // Add click listeners to items
@@ -81,10 +81,10 @@ function initLightbox() {
     if (item && !item.classList.contains('hidden')) {
       const img = item.querySelector('img');
       const src = img.getAttribute('src') || img.src;
-      
+
       // Find index in filtered data array
       currentPhotoIndex = galleryItemsData.findIndex(d => d.src === src);
-      
+
       openLightbox(src, galleryItemsData[currentPhotoIndex].title, galleryItemsData[currentPhotoIndex].subtitle);
     }
   });
@@ -95,10 +95,10 @@ function initLightbox() {
       lightboxImg.src = src;
       lightboxTitle.innerText = title;
       lightboxSubtitle.innerText = subtitle;
-      
+
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
-      
+
       // Smooth fade in
       setTimeout(() => {
         lightboxImg.style.opacity = '1';
@@ -108,14 +108,14 @@ function initLightbox() {
 
   function navigateLightbox(dir) {
     currentPhotoIndex += dir;
-    
+
     // Wrap around index boundaries
     if (currentPhotoIndex < 0) {
       currentPhotoIndex = galleryItemsData.length - 1;
     } else if (currentPhotoIndex >= galleryItemsData.length) {
       currentPhotoIndex = 0;
     }
-    
+
     const nextData = galleryItemsData[currentPhotoIndex];
     if (nextData && lightboxImg && lightboxTitle && lightboxSubtitle) {
       lightboxImg.style.opacity = '0';
@@ -135,7 +135,7 @@ function initLightbox() {
       navigateLightbox(-1);
     });
   }
-  
+
   if (nextBtn) {
     nextBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -166,7 +166,7 @@ function initLightbox() {
   // Keyboard navigation helpers
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('active')) return;
-    
+
     if (e.key === 'Escape') {
       closeLightbox();
     } else if (e.key === 'ArrowLeft') {
